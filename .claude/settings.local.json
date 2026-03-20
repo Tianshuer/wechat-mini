@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -X POST \"http://localhost:3000/api/auth/register\" -H \"Content-Type: application/json\" -d \"{\"\"username\"\":\"\"testuser\"\",\"\"password\"\":\"\"123456\"\",\"\"nickname\"\":\"\"测试用户\"\"}\")",
+      "Bash(curl \"https://api.open-meteo.com/v1/forecast?latitude=30.72608&longitude=108.67483&current=temperature_2m,weather_code,wind_direction,wind_speed,relative_humidity_2m,surface_pressure\")",
+      "Bash(taskkill //F //PID 18364)",
+      "Bash(curl \"http://localhost:3000/api/weather/forecast?location=%E5%8C%97%E4%BA%AC&days=7\")",
+      "Bash(TOKEN=\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoidGVzdHVzZXIiLCJpYXQiOjE3NzM5MDU0NDYsImV4cCI6MTc3NDUxMDI0Nn0.HtSs4F_Lo_J-SveCWQZZ1m5NfiQFlX_PRAGprZzoECY\" curl -X POST \"http://localhost:3000/api/favorites\" -H \"Content-Type: application/json\" -H \"Authorization: Bearer $TOKEN\" -d \"{\"\"cityCode\"\":\"\"39.9,116.4\"\",\"\"cityName\"\":\"\"北京市\"\"}\")",
+      "Bash(curl \"http://localhost:3000/api/weather/current?location=%E5%8C%97%E4%BA%AC\")",
+      "Bash(curl -s \"http://localhost:3000/api/weather/search?location=%E4%B8%8A%E6%B5%B7\")",
+      "Read(//c/Users/1/.ssh/**)"
+    ],
+    "additionalDirectories": [
+      "d:\\project\\wechat-mini-backend\\src",
+      "d:\\project\\wechat-mini-backend"
+    ]
+  }
+}
