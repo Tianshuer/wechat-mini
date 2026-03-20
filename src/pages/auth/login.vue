@@ -1,20 +1,26 @@
 <template>
   <view class="container">
-    <view class="form">
-      <view class="title">登录</view>
-      <view class="input-group">
-        <input class="input" v-model="username" placeholder="用户名" />
-      </view>
-      <view class="input-group">
-        <input class="input" v-model="password" type="password" placeholder="密码" />
-      </view>
-      <button class="btn" @click="handleLogin" :disabled="loading">
-        {{ loading ? '登录中...' : '登录' }}
-      </button>
-      <view class="link">
-        <text>还没有账号？</text>
-        <text class="link-text" @click="goToRegister">立即注册</text>
-      </view>
+    <view class="header">
+      <image class="logo" src="/static/tabbar/home.png" mode="aspectFit" />
+      <view class="title">天气伴旅</view>
+      <view class="subtitle">一键登录，体验便捷出行</view>
+    </view>
+
+    <!-- 微信手机号登录 -->
+    <button
+      class="btn-wechat"
+      open-type="getPhoneNumber"
+      @getphonenumber="handleGetPhoneNumber"
+      :loading="loading"
+    >
+      {{ loading ? '登录中...' : '微信手机号一键登录' }}
+    </button>
+
+    <view class="tips">
+      登录即表示同意
+      <text class="link">《用户协议》</text>
+      和
+      <text class="link">《隐私政策》</text>
     </view>
   </view>
 </template>
@@ -22,35 +28,59 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useUserStore } from '../../stores/user';
+import { authApi } from '../../services/api';
 
 const userStore = useUserStore();
-
-const username = ref('');
-const password = ref('');
 const loading = ref(false);
 
-const handleLogin = async () => {
-  if (!username.value || !password.value) {
-    uni.showToast({ title: '请输入用户名和密码', icon: 'none' });
+// 微信手机号登录
+const handleGetPhoneNumber = async (e: any) => {
+  console.log('getPhoneNumber event:', e.detail);
+
+  if (e.detail.errMsg === 'getPhoneNumber:fail no permission') {
+    uni.showModal({
+      title: '提示',
+      content: '当前账号无手机号权限，请使用小程序管理员或开发者账号登录微信开发者工具',
+      showCancel: false
+    });
+    return;
+  }
+
+  if (e.detail.errMsg !== 'getPhoneNumber:ok') {
+    console.log('用户取消或授权失败:', e.detail.errMsg);
     return;
   }
 
   loading.value = true;
+
   try {
-    await userStore.login(username.value, password.value);
+    // 1. 先调用 uni.login 获取 code
+    const loginRes = await uni.login({ provider: 'weixin' });
+    if (!loginRes.code) {
+      throw new Error('获取登录凭证失败');
+    }
+
+    // 2. 调用后端微信登录接口
+    const res = await authApi.wechatLogin(
+      loginRes.code,
+      e.detail.encryptedData,
+      e.detail.iv
+    );
+
+    // 3. 保存 token 和用户信息
+    userStore.setToken(res.token);
+    userStore.setUser(res.user);
+
     uni.showToast({ title: '登录成功', icon: 'success' });
+
     setTimeout(() => {
       uni.navigateBack();
     }, 1000);
-  } catch (e: any) {
-    uni.showToast({ title: e.message || '登录失败', icon: 'none' });
+  } catch (err: any) {
+    uni.showToast({ title: err.message || '登录失败', icon: 'none' });
   } finally {
     loading.value = false;
   }
-};
-
-const goToRegister = () => {
-  uni.navigateTo({ url: '/pages/auth/register' });
 };
 </script>
 
@@ -59,71 +89,67 @@ const goToRegister = () => {
   min-height: 100vh;
   background: linear-gradient(180deg, #C9D6DF 0%, #F5F5F0 100%);
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  padding: 40px 20px;
 }
 
-.form {
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 20px;
-  padding: 40px 30px;
-  width: 100%;
-  max-width: 350px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+.logo {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 20px;
 }
 
 .title {
-  font-size: 26px;
+  font-size: 32px;
   font-weight: bold;
   text-align: center;
-  margin-bottom: 35px;
   color: #333;
+  margin-bottom: 10px;
 }
 
-.input-group {
-  margin-bottom: 18px;
+.subtitle {
+  font-size: 14px;
+  color: #999;
+  text-align: center;
 }
 
-.input {
-  background: #f5f5f5;
+.btn-wechat {
+  width: 100%;
+  max-width: 320px;
+  height: 50px;
+  background-color: #07C160;
+  color: #ffffff;
   border-radius: 25px;
-  padding: 14px 20px;
-  font-size: 15px;
-  border: 1px solid transparent;
-  transition: all 0.3s;
-}
-
-.input:focus {
-  background: #fff;
-  border-color: #8FA89B;
-}
-
-.btn {
-  background: #8FA89B;
-  color: #fff;
-  border: none;
-  border-radius: 25px;
-  padding: 14px;
   font-size: 16px;
   font-weight: 500;
-  margin-top: 15px;
 }
 
-.btn[disabled] {
-  background: #ccc;
+.btn-wechat[loading] {
+  background-color: #07C160;
+}
+
+.btn-wechat::after {
+  border: none;
+}
+
+.tips {
+  font-size: 12px;
+  color: #999;
+  text-align: center;
+  margin-top: 30px;
+  line-height: 1.8;
 }
 
 .link {
-  text-align: center;
-  margin-top: 25px;
-  font-size: 14px;
-  color: #666;
-}
-
-.link-text {
   color: #8FA89B;
-  margin-left: 5px;
-  font-weight: 500;
 }
 </style>

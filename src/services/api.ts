@@ -69,6 +69,12 @@ export const authApi = {
       data: { username, password },
     }),
 
+  wechatLogin: (code: string, encryptedData: string, iv: string) =>
+    request<LoginResponse>('/auth/wechat-login', {
+      method: 'POST',
+      data: { code, encryptedData, iv },
+    }),
+
   getProfile: () =>
     request<{ userId: number; username: string }>('/auth/profile'),
 };

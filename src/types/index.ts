@@ -3,6 +3,7 @@ export interface User {
   id: number;
   username: string;
   nickname: string;
+  phone?: string;
   createdAt: string;
 }
 

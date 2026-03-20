@@ -40,6 +40,11 @@ export const useUserStore = defineStore('user', {
       clearToken();
     },
 
+    setToken(token: string) {
+      this.token = token;
+      setToken(token);
+    },
+
     setUser(user: User) {
       this.user = user;
     },
