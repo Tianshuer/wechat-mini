@@ -111,7 +111,7 @@ onLoad((options) => {
 <style scoped>
 .container {
   min-height: 100vh;
-  background: linear-gradient(180deg, #87ceeb 0%, #f0f8ff 100%);
+  background: linear-gradient(180deg, #C9D6DF 0%, #F5F5F0 100%);
   padding: 20px;
 }
 
@@ -142,7 +142,7 @@ onLoad((options) => {
 }
 
 .day-option.active {
-  background: #3cc51f;
+  background: #8FA89B;
   color: #fff;
 }
 

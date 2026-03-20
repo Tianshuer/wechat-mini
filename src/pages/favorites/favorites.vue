@@ -100,7 +100,7 @@ onMounted(() => {
 <style scoped>
 .container {
   min-height: 100vh;
-  background: linear-gradient(180deg, #87ceeb 0%, #f0f8ff 100%);
+  background: linear-gradient(180deg, #C9D6DF 0%, #F5F5F0 100%);
   padding: 20px;
 }
 
@@ -115,7 +115,7 @@ onMounted(() => {
 }
 
 .btn {
-  background: #3cc51f;
+  background: #8FA89B;
   color: #fff;
   border: none;
   padding: 12px 32px;
@@ -164,7 +164,7 @@ onMounted(() => {
 }
 
 .view-btn {
-  color: #3cc51f;
+  color: #8FA89B;
   font-size: 14px;
   font-weight: 500;
 }

@@ -57,7 +57,7 @@ const goToRegister = () => {
 <style scoped>
 .container {
   min-height: 100vh;
-  background: linear-gradient(180deg, #87ceeb 0%, #f0f8ff 100%);
+  background: linear-gradient(180deg, #C9D6DF 0%, #F5F5F0 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -96,11 +96,11 @@ const goToRegister = () => {
 
 .input:focus {
   background: #fff;
-  border-color: #3cc51f;
+  border-color: #8FA89B;
 }
 
 .btn {
-  background: #3cc51f;
+  background: #8FA89B;
   color: #fff;
   border: none;
   border-radius: 25px;
@@ -122,7 +122,7 @@ const goToRegister = () => {
 }
 
 .link-text {
-  color: #3cc51f;
+  color: #8FA89B;
   margin-left: 5px;
   font-weight: 500;
 }

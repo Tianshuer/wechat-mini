@@ -88,7 +88,7 @@ const goToRegister = () => {
 <style scoped>
 .container {
   min-height: 100vh;
-  background: linear-gradient(180deg, #87ceeb 0%, #f0f8ff 100%);
+  background: linear-gradient(180deg, #C9D6DF 0%, #F5F5F0 100%);
   padding: 20px;
 }
 
@@ -110,7 +110,7 @@ const goToRegister = () => {
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #3cc51f, #2ea316);
+  background: linear-gradient(135deg, #8FA89B, #7A8B7F);
   color: #fff;
   display: flex;
   align-items: center;
@@ -124,7 +124,7 @@ const goToRegister = () => {
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #ccc, #aaa);
+  background: linear-gradient(135deg, #BEBEBE, #9E9E9E);
   color: #fff;
   display: flex;
   align-items: center;
@@ -198,7 +198,7 @@ const goToRegister = () => {
 }
 
 .btn {
-  background: #3cc51f;
+  background: #8FA89B;
   color: #fff;
   border: none;
   padding: 14px 40px;
@@ -209,7 +209,7 @@ const goToRegister = () => {
 
 .btn-outline {
   background: transparent;
-  border: 1px solid #3cc51f;
-  color: #3cc51f;
+  border: 1px solid #8FA89B;
+  color: #8FA89B;
 }
 </style>

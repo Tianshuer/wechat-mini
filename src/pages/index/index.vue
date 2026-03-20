@@ -170,7 +170,7 @@ onMounted(() => {
 .container {
   padding: 20px;
   min-height: 100vh;
-  background: linear-gradient(180deg, #87ceeb 0%, #f0f8ff 100%);
+  background: linear-gradient(180deg, #C9D6DF 0%, #F5F5F0 100%);
 }
 
 .search-box {
@@ -256,7 +256,7 @@ onMounted(() => {
 }
 
 .btn {
-  background: #3cc51f;
+  background: #8FA89B;
   color: #fff;
   border: none;
   padding: 12px 32px;
@@ -267,8 +267,8 @@ onMounted(() => {
 
 .btn-outline {
   background: transparent;
-  border: 1px solid #3cc51f;
-  color: #3cc51f;
+  border: 1px solid #8FA89B;
+  color: #8FA89B;
 }
 
 .favorites-section {
@@ -314,7 +314,7 @@ onMounted(() => {
 }
 
 .btn-small {
-  background: #3cc51f;
+  background: #8FA89B;
   color: #fff;
   border: none;
   padding: 8px 20px;
