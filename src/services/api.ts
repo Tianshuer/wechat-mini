@@ -138,3 +138,38 @@ export const historyApi = {
       method: 'DELETE',
     }),
 };
+
+// 行程 API
+export const tripApi = {
+  // 获取当前用户的行程
+  getTrip: () =>
+    request<{ trip: any }>('/trips'),
+
+  // 创建行程
+  createTrip: (data: {
+    startDate: string;
+    endDate: string;
+    days: Array<{ date: string; cityName: string; cityCode: string }>;
+  }) =>
+    request<{ trip: any }>('/trips', {
+      method: 'POST',
+      data,
+    }),
+
+  // 更新行程
+  updateTrip: (id: number, data: {
+    startDate: string;
+    endDate: string;
+    days: Array<{ date: string; cityName: string; cityCode: string }>;
+  }) =>
+    request<{ trip: any }>(`/trips/${id}`, {
+      method: 'PUT',
+      data,
+    }),
+
+  // 删除行程
+  deleteTrip: (id: number) =>
+    request<{ success: boolean }>(`/trips/${id}`, {
+      method: 'DELETE',
+    }),
+};

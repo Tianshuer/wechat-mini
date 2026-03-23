@@ -7,6 +7,12 @@
       }
     },
     {
+      "path": "pages/trip/trip",
+      "style": {
+        "navigationBarTitleText": "行程天气"
+      }
+    },
+    {
       "path": "pages/forecast/forecast",
       "style": {
         "navigationBarTitleText": "天气预报"

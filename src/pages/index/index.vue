@@ -12,6 +12,12 @@
       />
     </view>
 
+    <!-- 行程天气按钮 -->
+    <view class="trip-btn" @click="goToTrip">
+      <text class="trip-icon">📅</text>
+      <text class="trip-text">行程天气</text>
+    </view>
+
     <!-- 搜索结果 -->
     <view v-if="showSearchResults" class="search-results">
       <view
@@ -161,6 +167,10 @@ const goToLogin = () => {
   uni.navigateTo({ url: '/pages/auth/login' });
 };
 
+const goToTrip = () => {
+  uni.navigateTo({ url: '/pages/trip/trip' });
+};
+
 onMounted(() => {
   loadFavorites();
 });
@@ -174,7 +184,28 @@ onMounted(() => {
 }
 
 .search-box {
+  margin-bottom: 15px;
+}
+
+.trip-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border-radius: 25px;
+  padding: 12px 20px;
   margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.trip-icon {
+  font-size: 16px;
+  margin-right: 8px;
+}
+
+.trip-text {
+  font-size: 14px;
+  color: #8FA89B;
 }
 
 .search-input {
