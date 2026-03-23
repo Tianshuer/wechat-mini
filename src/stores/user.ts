@@ -40,6 +40,21 @@ export const useUserStore = defineStore('user', {
       clearToken();
     },
 
+    // 发送短信验证码
+    async sendSmsCode(phone: string) {
+      const res = await authApi.sendSmsCode(phone);
+      return res;
+    },
+
+    // 短信验证码登录
+    async smsLogin(phone: string, code: string) {
+      const res = await authApi.smsLogin(phone, code);
+      this.token = res.token;
+      this.user = res.user;
+      setToken(res.token);
+      return res;
+    },
+
     setToken(token: string) {
       this.token = token;
       setToken(token);

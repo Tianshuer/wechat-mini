@@ -75,6 +75,20 @@ export const authApi = {
       data: { code },
     }),
 
+  // 发送短信验证码
+  sendSmsCode: (phone: string) =>
+    request<{ success: boolean; message: string }>('/auth/send-sms', {
+      method: 'POST',
+      data: { phone },
+    }),
+
+  // 短信验证码登录
+  smsLogin: (phone: string, code: string) =>
+    request<LoginResponse>('/auth/sms-login', {
+      method: 'POST',
+      data: { phone, code },
+    }),
+
   getProfile: () =>
     request<{ userId: number; username: string }>('/auth/profile'),
 };

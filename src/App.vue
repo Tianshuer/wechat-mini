@@ -1,11 +1,39 @@
 <script setup lang="ts">
 import { onLaunch, onShow, onHide } from "@dcloudio/uni-app";
+import { useUserStore } from "./stores/user";
+
+const userStore = useUserStore();
+
+// 检查登录状态并跳转
+const checkLoginStatus = () => {
+  const pages = getCurrentPages();
+  const currentPage = pages[pages.length - 1];
+  const currentPath = currentPage?.$page?.options?.path || '/pages/index/index';
+
+  // 获取当前页面路径
+  const currentRoute = currentPage?.route || '';
+
+  // 已登录且在登录页，跳转首页
+  if (userStore.isLoggedIn && currentRoute === 'pages/auth/login') {
+    uni.switchTab({ url: '/pages/index/index' });
+    return;
+  }
+
+  // 未登录且不在登录页，跳转登录页
+  if (!userStore.isLoggedIn && currentRoute !== 'pages/auth/login') {
+    uni.reLaunch({ url: '/pages/auth/login' });
+  }
+};
+
 onLaunch(() => {
   console.log("App Launch");
 });
+
 onShow(() => {
   console.log("App Show");
+  checkLoginStatus();
 });
+
 onHide(() => {
   console.log("App Hide");
 });
