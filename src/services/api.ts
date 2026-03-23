@@ -69,10 +69,10 @@ export const authApi = {
       data: { username, password },
     }),
 
-  wechatLogin: (code: string, encryptedData: string, iv: string) =>
+  wechatLogin: (code: string) =>
     request<LoginResponse>('/auth/wechat-login', {
       method: 'POST',
-      data: { code, encryptedData, iv },
+      data: { code },
     }),
 
   getProfile: () =>

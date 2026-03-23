@@ -63,8 +63,7 @@ const handleGetPhoneNumber = async (e: any) => {
     // 2. 调用后端微信登录接口
     const res = await authApi.wechatLogin(
       loginRes.code,
-      e.detail.encryptedData,
-      e.detail.iv
+      e.detail.code
     );
 
     // 3. 保存 token 和用户信息
