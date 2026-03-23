@@ -47,13 +47,6 @@
     >
       {{ loading ? '登录中...' : '登录' }}
     </button>
-
-    <view class="tips">
-      登录即表示同意
-      <text class="link">《用户协议》</text>
-      和
-      <text class="link">《隐私政策》</text>
-    </view>
   </view>
 </template>
 
@@ -238,17 +231,5 @@ const handleLogin = async () => {
 
 .btn-login::after {
   border: none;
-}
-
-.tips {
-  font-size: 12px;
-  color: #999;
-  text-align: center;
-  margin-top: 30px;
-  line-height: 1.8;
-}
-
-.link {
-  color: #8FA89B;
 }
 </style>
