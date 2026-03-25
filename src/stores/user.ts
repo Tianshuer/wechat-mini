@@ -65,3 +65,17 @@ export const useUserStore = defineStore('user', {
     },
   },
 });
+
+// 初始化时从本地存储恢复数据
+export function initUserStore() {
+  try {
+    const stored = uni.getStorageSync('userStore');
+    if (stored) {
+      const store = useUserStore();
+      if (stored.token) store.token = stored.token;
+      if (stored.user) store.user = stored.user;
+    }
+  } catch (e) {
+    console.warn('恢复数据失败:', e);
+  }
+}

@@ -49,6 +49,12 @@
     "navigationBarBackgroundColor": "#F5F5F0",
     "backgroundColor": "#F5F5F0"
   },
+  "easycom": {
+    "autoscan": true,
+    "custom": {
+      "^up-(.*)": "uview-plus/components/u-$1/u-$1.vue"
+    }
+  },
   "tabBar": {
     "color": "#999999",
     "selectedColor": "#8FA89B",

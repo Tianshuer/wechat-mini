@@ -8,29 +8,25 @@
 
     <!-- 手机号输入 -->
     <view class="input-group">
-      <view class="input-item">
-        <text class="label">+86</text>
-        <input
-          class="input"
-          v-model="phone"
-          type="number"
-          placeholder="请输入手机号"
-          maxlength="11"
-        />
-      </view>
+      <input
+        v-model="phone"
+        type="number"
+        placeholder="请输入手机号"
+        maxlength="11"
+        class="input-item"
+      />
 
       <!-- 验证码输入 -->
-      <view class="input-item">
-        <text class="label">验证码</text>
+      <view class="code-row">
         <input
-          class="input"
           v-model="code"
           type="number"
           placeholder="请输入验证码"
           maxlength="6"
+          class="code-input"
         />
         <button
-          class="btn-code"
+          class="code-btn"
           :disabled="countdown > 0"
           @click="handleSendCode"
         >
@@ -175,61 +171,55 @@ const handleLogin = async () => {
 }
 
 .input-item {
-  display: flex;
-  align-items: center;
-  background-color: #fff;
+  background: #F0F0E8;
   border-radius: 25px;
   padding: 12px 20px;
+  font-size: 16px;
   margin-bottom: 15px;
-  height: 50px;
-}
-
-.label {
-  font-size: 16px;
-  color: #333;
-  margin-right: 15px;
-  min-width: 50px;
-}
-
-.input {
-  flex: 1;
-  font-size: 16px;
-  color: #333;
-}
-
-.btn-code {
-  font-size: 14px;
-  color: #8FA89B;
-  background: none;
-  padding: 0;
-  margin: 0;
-  line-height: normal;
-}
-
-.btn-code[disabled] {
-  color: #999;
-}
-
-.btn-code::after {
   border: none;
+}
+
+.code-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.code-input {
+  flex: 1;
+  background: #F0F0E8;
+  border-radius: 25px;
+  padding: 12px 20px;
+  font-size: 16px;
+  border: none;
+}
+
+.code-btn {
+  white-space: nowrap;
+  background: #8FA89B;
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  padding: 12px 20px;
+  font-size: 14px;
+}
+
+.code-btn[disabled] {
+  background: #ccc;
 }
 
 .btn-login {
   width: 100%;
   max-width: 320px;
-  height: 50px;
-  background-color: #8FA89B;
-  color: #ffffff;
-  border-radius: 25px;
-  font-size: 16px;
-  font-weight: 500;
-}
-
-.btn-login[loading] {
-  background-color: #8FA89B;
-}
-
-.btn-login::after {
+  background: #8FA89B;
+  color: #fff;
   border: none;
+  border-radius: 25px;
+  padding: 12px 30px;
+  font-size: 16px;
+}
+
+.btn-login:active {
+  opacity: 0.8;
 }
 </style>

@@ -38,8 +38,9 @@ onHide(() => {
   console.log("App Hide");
 });
 </script>
-
 <style lang="scss">
+@import "uview-plus/index.scss";
+
 /* 全局样式 - 莫兰迪色系 */
 page {
   background-color: #F5F5F0;
