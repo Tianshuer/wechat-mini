@@ -132,7 +132,7 @@ const viewForecast = () => {
 
 const addToFavorite = async () => {
   if (!userStore.isLoggedIn) {
-    uni.showToast({ title: '请先登录', icon: 'none' });
+    uni.navigateTo({ url: '/pages/auth/login' });
     return;
   }
   if (!weatherStore.currentWeather) return;

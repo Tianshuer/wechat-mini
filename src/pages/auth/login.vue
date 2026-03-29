@@ -116,7 +116,13 @@ const handleLogin = async () => {
     uni.showToast({ title: '登录成功', icon: 'success' });
 
     setTimeout(() => {
-      uni.switchTab({ url: '/pages/index/index' });
+      // 优先返回上一页， fallback 到首页
+      const pages = getCurrentPages();
+      if (pages.length > 1) {
+        uni.navigateBack();
+      } else {
+        uni.switchTab({ url: '/pages/index/index' });
+      }
     }, 1000);
   } catch (error: any) {
     uni.showToast({ title: error.message || '登录失败', icon: 'none' });

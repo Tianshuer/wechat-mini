@@ -19,10 +19,7 @@ const checkLoginStatus = () => {
     return;
   }
 
-  // 未登录且不在登录页，跳转登录页
-  if (!userStore.isLoggedIn && currentRoute !== 'pages/auth/login') {
-    uni.reLaunch({ url: '/pages/auth/login' });
-  }
+  // 不再强制跳转登录页，登录变为可选行为
 };
 
 onLaunch(() => {
